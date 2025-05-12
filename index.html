@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PsyMentAI - Yapay Zeka Destekli Terapi Uygulaması</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #5856d6;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .hero {
+            background-color: #e0f2f7;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            color: #2196f3;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #45a049;
+        }
+
+        .features {
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 2em;
+            color: #2196f3;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px;
+            width: 300px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .feature-item h3 {
+            color: #5856d6;
+            margin-top: 0;
+        }
+
+        .screenshots {
+            background-color: #f0f8ff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .screenshots h2 {
+            font-size: 2em;
+            color: #2196f3;
+            margin-bottom: 30px;
+        }
+
+        .screenshot-gallery {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .screenshot-item {
+            margin: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .screenshot-item img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .testimonials {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: white;
+        }
+
+        .testimonials h2 {
+            font-size: 2em;
+            color: #2196f3;
+            margin-bottom: 30px;
+        }
+
+        .testimonial-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .testimonial-item p {
+            font-style: italic;
+            color: #666;
+        }
+
+        .testimonial-item cite {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>PsyMentAI</h1>
+        <nav>
+            <ul>
+                <li><a href="#ozellikler">Özellikler</a></li>
+                <li><a href="#ekran-goruntuleri">Ekran Görüntüleri</a></li>
+                <li><a href="#yorumlar">Kullanıcı Yorumları</a></li>
+                <li><a href="#iletisim">İletişim</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Zihinsel Sağlığınız İçin Kişiselleştirilmiş Yapay Zeka Desteği</h1>
+            <p>PsyMentAI, yapay zeka gücüyle size özel terapi deneyimi sunar. Duygusal iyiliğinize odaklanın ve daha sağlıklı bir zihne adım atın.</p>
+            <a href="#" class="cta-button">Uygulamayı İndir</a>
+        </div>
+    </section>
+
+    <section id="ozellikler" class="features">
+        <h2>Öne Çıkan Özellikler</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h3>Kişiselleştirilmiş Terapi Planları</h3>
+                <p>Gelişmiş yapay zeka algoritmaları sayesinde size özel olarak oluşturulmuş terapi planları ile hedeflerinize daha hızlı ulaşın.</p>
+            </div>
+            <div class="feature-item">
+                <h3>7/24 Duygusal Destek</h3>
+                <p>Ne zaman ihtiyaç duyarsanız duyun, PsyMentAI size anında destek olur ve duygusal yolculuğunuzda size eşlik eder.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Gizlilik ve Güvenlik</h3>
+                <p>Verileriniz en üst düzeyde şifrelenir ve gizliliğiniz her zaman önceliğimizdir.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Farklı Terapi Teknikleri</h3>
+                <p>Bilişsel davranışçı terapi (BDT), kabul ve kararlılık terapisi (ACT) gibi çeşitli terapi teknikleri ile zihinsel sağlığınızı destekler.</p>
+            </div>
+            <div class="feature-item">
+                <h3>İlerleme Takibi</h3>
+                <p>Terapi sürecindeki ilerlemenizi kolayca takip edin ve motivasyonunuzu yüksek tutun.</p>
+            </div>
+            <div class="feature-item">
+                <h3>Kullanıcı Dostu Arayüz</h3>
+                <p>Sezgisel ve kolay anlaşılır arayüzü sayesinde PsyMentAI'ı rahatlıkla kullanabilirsiniz.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ekran-goruntuleri" class="screenshots">
+        <h2>Uygulama Ekran Görüntüleri</h2>
+        <div class="screenshot-gallery">
+            <div class="screenshot-item"><img src="placeholder-screenshot1.jpg" alt="Ekran Görüntüsü 1"></div>
+            <div class="screenshot-item"><img src="placeholder-screenshot2.jpg" alt="Ekran Görüntüsü 2"></div>
+            <div class="screenshot-item"><img src="placeholder-screenshot3.jpg" alt="Ekran Görüntüsü 3"></div>
+            </div>
+    </section>
+
+    <section id="yorumlar" class="testimonials">
+        <h2>Kullanıcı Yorumları</h2>
+        <div class="testimonial-list">
+            <div class="testimonial-item">
+                <p>"PsyMentAI sayesinde zihinsel sağlığıma daha fazla özen göstermeye başladım. Uygulama gerçekten çok yardımcı oluyor."</p>
+                <cite>- Ayşe K.</cite>
+            </div>
+            <div class="testimonial-item">
+                <p>"Kişiselleştirilmiş terapi planları sayesinde kendimi daha iyi tanıma fırsatı buldum."</p>
+                <cite>- Mehmet L.</cite>
+            </div>
+            </div>
+    </section>
+
+    <section id="iletisim" class="contact">
+        <h2 style="text-align: center; color: #2196f3; padding: 40px 20px;">Bize Ulaşın</h2>
+        <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+            <p style="text-align: center; color: #555; margin-bottom: 20px;">Sorularınız veya geri bildirimleriniz için bizimle iletişime geçmekten çekinmeyin.</p>
+            <form style="display: flex; flex-direction: column; gap: 15px;">
+                <input type="text" placeholder="Adınız Soyadınız" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <input type="email" placeholder="E-posta Adresiniz" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <textarea placeholder="Mesajınız" rows="5" style="padding: 10px; border: 1px solid #ccc; border-radius: 5px;"></textarea>
+                <button type="submit" style="background-color: #2196f3; color: white; padding: 15px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: background-color 0.3s ease;">Gönder</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 PsyMentAI. Tüm Hakları Saklıdır.</p>
+    </footer>
+</body>
+</html>
