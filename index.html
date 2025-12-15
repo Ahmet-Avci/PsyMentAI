@@ -1,288 +1,446 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PsyMentAI Labs | Future of Intelligence</title>
-    <meta name="description" content="Yapay zeka destekli sağlık çözümleri, kurumsal otomasyon sistemleri ve yeni nesil dijital mimariler.">
-    
+    <title>PsyMentAI Labs | Digital Product Studio</title>
+    <meta name="description"
+        content="PsyMentAI Labs - A boutique digital product studio delivering high-impact software engineering and enterprise automation solutions.">
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --bg-color: #030712; /* Çok koyu lacivert/siyah */
-            --text-primary: #f9fafb;
-            --text-secondary: #9ca3af;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.05);
-            --blur: 20px;
+            --bg-color: #050A14;
+            --text-color: #F0F4F8;
+            --text-muted: #94A3B8;
+            --accent-primary: #38BDF8;
+            /* Sky Blue */
+            --accent-secondary: #818CF8;
+            /* Indigo */
+            --card-bg: rgba(30, 41, 59, 0.4);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --font-display: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --gap: 24px;
         }
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
-            color: var(--text-primary);
+            color: var(--text-color);
+            font-family: var(--font-body);
             line-height: 1.6;
             overflow-x: hidden;
-        }
-
-        /* --- Arkaplan Efektleri --- */
-        .glow-orb {
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            background: var(--accent-gradient);
-            filter: blur(150px);
-            opacity: 0.15;
-            border-radius: 50%;
-            z-index: -1;
-            animation: pulse 10s infinite alternate;
-        }
-        .orb-1 { top: -10%; left: -10%; }
-        .orb-2 { bottom: 10%; right: -10%; width: 400px; height: 400px; }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.1; }
-            100% { transform: scale(1.2); opacity: 0.2; }
-        }
-
-        /* --- Header --- */
-        header {
+            min-height: 100vh;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 2rem 5%;
+            justify-content: center;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Background Gradients */
+        body::before {
+            content: "";
             position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--glass-border);
+            top: -20%;
+            left: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(5, 10, 20, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 20s infinite ease-in-out;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body::after {
+            content: "";
+            position: fixed;
+            bottom: -20%;
+            right: -10%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, rgba(129, 140, 248, 0.15) 0%, rgba(5, 10, 20, 0) 70%);
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 25s infinite ease-in-out reverse;
         }
 
-        nav a {
-            color: var(--text-secondary);
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(20px, 40px);
+            }
+        }
+
+        a {
             text-decoration: none;
-            margin-left: 2rem;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            color: inherit;
+            transition: color 0.2s;
         }
 
-        nav a:hover {
-            color: #fff;
+        /* Layout - Bento Grid */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: var(--gap);
+            max-width: 1200px;
+            width: 100%;
         }
 
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh;
+        /* Card Styles - Glassmorphism */
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 1rem;
+            justify-content: space-between;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
+            border-color: rgba(56, 189, 248, 0.3);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        /* Typography */
+        h1,
+        h2,
+        h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            letter-spacing: -0.02em;
         }
 
         h1 {
             font-size: 4rem;
-            font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(to right, #fff, #9ca3af);
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin-bottom: 3rem;
-        }
-
-        .cta-button {
-            padding: 1rem 2.5rem;
-            background: var(--text-primary);
-            color: var(--bg-color);
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
-        }
-
-        /* --- Vision & Solutions --- */
-        .section {
-            padding: 8rem 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-header {
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-secondary);
-            max-width: 500px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 2.5rem;
-            border-radius: 16px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.2);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
+        h2 {
+            font-size: 1.75rem;
             margin-bottom: 1rem;
             color: #fff;
         }
 
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 2rem;
+        p {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .tag {
-            font-size: 0.75rem;
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            color: #e5e7eb;
-            display: inline-block;
-        }
-
-        /* --- Footer --- */
-        footer {
-            border-top: 1px solid var(--glass-border);
-            padding: 4rem 5%;
-            margin-top: 4rem;
-            display: flex;
-            justify-content: space-between;
+            display: inline-flex;
             align-items: center;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent-primary);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 6px 14px;
+            border-radius: 100px;
+            margin-bottom: 20px;
+            align-self: flex-start;
+            border: 1px solid rgba(56, 189, 248, 0.2);
         }
 
-        /* --- Responsive --- */
+        /* Specific Grid Areas */
+
+        /* Hero Section */
+        .hero {
+            grid-column: span 4;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px;
+            min-height: 450px;
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
+        }
+
+        .hero-bio {
+            position: relative;
+            padding-left: 30px;
+        }
+
+        .hero-bio::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Showcase Section */
+        .showcase-1 {
+            grid-column: span 2;
+            min-height: 320px;
+        }
+
+        .showcase-2 {
+            grid-column: span 1;
+        }
+
+        .showcase-3 {
+            grid-column: span 1;
+        }
+
+        /* Services */
+        .services {
+            grid-column: span 1;
+            grid-row: span 2;
+        }
+
+        .service-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .service-list li {
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-list li::before {
+            content: "•";
+            color: var(--accent-primary);
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Founder / Studio Model */
+        .founder {
+            grid-column: span 2;
+        }
+
+        /* Contact */
+        .contact {
+            grid-column: span 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            border: none;
+        }
+
+        .contact h2,
+        .contact p {
+            color: #0F172A;
+        }
+
+        .contact p {
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        .contact:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 24px;
+            padding: 14px 28px;
+            background: #0F172A;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 12px;
+            transition: all 0.2s;
+            font-family: var(--font-body);
+        }
+
+        .btn:hover {
+            background: #1E293B;
+            transform: translateX(5px);
+        }
+
+        /* Visual Elements */
+        .visual-box {
+            margin-top: auto;
+            height: 120px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-box::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: var(--accent-primary);
+            filter: blur(60px);
+            opacity: 0.4;
+            top: -20px;
+            right: -20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 3.5rem;
+            }
+        }
+
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            header { padding: 1.5rem 5%; }
-            nav { display: none; } /* Mobilde basitlik için menüyü gizledik */
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero,
+            .showcase-1,
+            .showcase-2,
+            .showcase-3,
+            .services,
+            .founder,
+            .contact {
+                grid-column: span 1;
+            }
+
+            .hero {
+                padding: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+
+            .services {
+                grid-row: auto;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
-
-    <header>
-        <div class="logo">PsyMentAI Labs.</div>
-        <nav>
-            <a href="#vizyon">Vizyon</a>
-            <a href="#cozumler">Çözümler</a>
-            <a href="mailto:contact@psymentai.com">İletişim</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <h1>Veri, Zeka ve<br>İnsan Doğası.</h1>
-        <p>PsyMentAI Labs; biyolojik zekayı yapay zekanın ölçeklenebilir gücüyle birleştirerek, hem bireysel refahı hem de kurumsal verimliliği artıran yeni nesil teknolojiler geliştirir.</p>
-        <a href="#cozumler" class="cta-button">Projelerimizi İnceleyin</a>
-    </section>
-
-    <section id="vizyon" class="section">
-        <div class="grid">
-            <div class="card" style="border: none; background: transparent; padding-left: 0;">
-                <h2 style="font-size: 2.5rem; line-height: 1.2;">Sadece Kod Değil,<br>Çözüm Mimarisiyiz.</h2>
+    <div class="container">
+        <!-- Hero Section -->
+        <div class="card hero">
+            <div class="hero-content">
+                <div class="tag">PsyMentAI Labs</div>
+                <h1>Engineering<br>Digital<br>Excellence.</h1>
             </div>
-            <div class="card" style="border: none; background: transparent;">
-                <p>Teknolojiyi tek bir dikeyde sınırlamıyoruz. İnsan zihnini anlamaya çalışan algoritmalar geliştirirken, aynı zamanda iş süreçlerini optimize eden otonom sistemler kurguluyoruz.</p>
-                <p>Yaklaşımımız "Mobile-First" değil, "Intelligence-First". Verinin olduğu her yerde, anlamlı ve eyleme dökülebilir sonuçlar üretiyoruz.</p>
+            <div class="hero-bio">
+                <p>
+                    A boutique digital product studio delivering enterprise-grade solutions.
+                    We combine high-level architectural expertise with the agility of a specialized team
+                    to build next-generation SaaS products and intelligent automation systems.
+                </p>
             </div>
         </div>
-    </section>
 
-    <section id="cozumler" class="section">
-        <div class="section-header">
-            <h2>Odak Alanlarımız</h2>
-            <p>Laboratuvarımızda şu an aktif olarak geliştirilen ve yönetilen teknolojiler.</p>
+        <!-- Showcase 1: PsyMentAI -->
+        <div class="card showcase-1">
+            <div>
+                <div class="tag">Flagship Product</div>
+                <h2>PsyMentAI</h2>
+                <p>Cognitive intelligence for mental wellness. An advanced mobile platform leveraging AI to deliver
+                    personalized, adaptive mental health support.</p>
+            </div>
+            <div class="visual-box"></div>
         </div>
 
-        <div class="grid">
-            <div class="card">
-                <span class="tag">HealthTech</span>
-                <h3 style="margin-top: 1rem;">Bilişsel Destek Asistanları</h3>
-                <p>Kullanıcının duygusal durumunu analiz eden, Stoacılık ve CBT (Bilişsel Davranışçı Terapi) temelli kişiselleştirilmiş rehberlik sunan mobil yapay zeka çözümleri.</p>
-                <div style="margin-top: auto; font-size: 0.8rem; color: #6366f1;">• Yakında App Store & Play Store'da</div>
-            </div>
-
-            <div class="card">
-                <span class="tag">Enterprise Automation</span>
-                <h3 style="margin-top: 1rem;">Otonom Süreç Yönetimi</h3>
-                <p>Python tabanlı, karmaşık iş akışlarını 7/24 hatasız yöneten, kendi kendini iyileştirebilen (self-healing) ve raporlayan bot ekosistemleri.</p>
-                <div style="margin-top: auto; font-size: 0.8rem; color: #a855f7;">• Aktif Operasyon</div>
-            </div>
-
-            <div class="card">
-                <span class="tag">R&D Architecture</span>
-                <h3 style="margin-top: 1rem;">Ölçeklenebilir Sistemler</h3>
-                <p>.NET Core ve Mikroservis mimarileri üzerine kurulu, yüksek trafikli veri akışlarını yönetebilen, güvenli ve modüler backend altyapıları.</p>
-                <div style="margin-top: auto; font-size: 0.8rem; color: #ec4899;">• Altyapı Çözümleri</div>
-            </div>
+        <!-- Showcase 2: Enterprise Bots -->
+        <div class="card showcase-2">
+            <div class="tag">Automation</div>
+            <h2>Enterprise Bots</h2>
+            <p>Autonomous digital workforce. Python-based systems designed to orchestrate complex business workflows
+                24/7.</p>
         </div>
-    </section>
 
-    <footer>
-        <div>&copy; 2025 PsyMentAI Laboratories. Tüm hakları saklıdır.</div>
-        <div>Mersin, Türkiye</div>
-    </footer>
+        <!-- Showcase 3: R&D -->
+        <div class="card showcase-3">
+            <div class="tag">R&D</div>
+            <h2>Architecture</h2>
+            <p>Scalable .NET Core infrastructure & distributed system research.</p>
+        </div>
+
+        <!-- Services -->
+        <div class="card services">
+            <div class="tag">Expertise</div>
+            <h2>Capabilities</h2>
+            <ul class="service-list">
+                <li>Mobile Engineering</li>
+                <li>Backend Architecture</li>
+                <li>System Design</li>
+                <li>Cloud Infrastructure</li>
+                <li>AI Integration</li>
+            </ul>
+        </div>
+
+        <!-- Founder / Studio Model -->
+        <div class="card founder">
+            <div class="tag">The Studio Model</div>
+            <h2>Precision & Agility</h2>
+            <p>
+                We eliminate the inefficiencies of traditional agencies.
+                At PsyMentAI Labs, you partner directly with the Lead Architect.
+                This ensures that your vision is translated into code with zero signal loss,
+                delivering robust, scalable, and market-ready products faster.
+            </p>
+        </div>
+
+        <!-- Contact -->
+        <a href="mailto:contact@psymentai.com" class="card contact">
+            <h2>Start a Project</h2>
+            <p>Accepting select partnerships.</p>
+            <div class="btn">Get in Touch &rarr;</div>
+        </a>
+    </div>
 
 </body>
+
 </html>
