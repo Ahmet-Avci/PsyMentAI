@@ -1,446 +1,512 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="tr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PsyMentAI Labs | Digital Product Studio</title>
-    <meta name="description"
-        content="PsyMentAI Labs - A boutique digital product studio delivering high-impact software engineering and enterprise automation solutions.">
-
-    <!-- Fonts -->
+    <title>PsyMentAI Labs | Dijital Ürün Stüdyosu</title>
+    <meta name="description" content="Butik yaklaşımla, global standartlarda yazılım mimarisi. Fikirlerinizi dijital zekaya dönüştürüyoruz.">
+    
+    <!-- Google Fonts import -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 
     <style>
+        /* 
+         * TASARIM DEĞİŞKENLERİ (Design Tokens)
+         * Gelecekte sitenin renklerini veya fontlarını değiştirmek isterseniz
+         * sadece buradaki değerleri düzenlemeniz yeterli olacaktır.
+         */
         :root {
-            --bg-color: #050A14;
-            --text-color: #F0F4F8;
-            --text-muted: #94A3B8;
-            --accent-primary: #38BDF8;
-            /* Sky Blue */
-            --accent-secondary: #818CF8;
-            /* Indigo */
-            --card-bg: rgba(30, 41, 59, 0.4);
-            --card-border: rgba(255, 255, 255, 0.1);
+            /* Renk Paleti - Obsidian & Deep Teal */
+            --bg-body: #0a0a0a;
+            --bg-glass: rgba(255, 255, 255, 0.02);
+            --bg-glass-hover: rgba(255, 255, 255, 0.04);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            
+            --color-accent: #008080; /* Deep Teal */
+            --color-accent-glow: rgba(0, 128, 128, 0.4);
+            
+            --text-primary: #ffffff;
+            --text-secondary: #a3a3a3;
+            --text-accent: #66b3b3;
+
+            /* Tipografi */
             --font-display: 'Space Grotesk', sans-serif;
             --font-body: 'Inter', sans-serif;
-            --gap: 24px;
+
+            /* Düzen & Boşluklar */
+            --container-width: 1200px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 4rem;
+            --spacing-xl: 8rem;
+            
+            /* Efektler */
+            --radius-md: 12px;
+            --radius-lg: 24px;
+            --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            --backdrop-blur: 12px;
+            --transition-smooth: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
+        /* Temel Sıfırlama (Reset) */
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--bg-body);
+            color: var(--text-primary);
             font-family: var(--font-body);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            padding: 40px 20px;
-            position: relative;
+            /* Hafif gürültü (noise) dokusu ekleyerek "Mimar" havasını güçlendiriyoruz */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
         }
 
-        /* Background Gradients */
-        body::before {
-            content: "";
-            position: fixed;
-            top: -20%;
-            left: -10%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(5, 10, 20, 0) 70%);
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 20s infinite ease-in-out;
-        }
-
-        body::after {
-            content: "";
-            position: fixed;
-            bottom: -20%;
-            right: -10%;
-            width: 60%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(129, 140, 248, 0.15) 0%, rgba(5, 10, 20, 0) 70%);
-            filter: blur(80px);
-            z-index: -1;
-            animation: float 25s infinite ease-in-out reverse;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(20px, 40px);
-            }
+        /* Yardımcı Sınıflar */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: color 0.2s;
+            transition: var(--transition-smooth);
         }
 
-        /* Layout - Bento Grid */
-        .container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto auto auto;
-            gap: var(--gap);
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        /* Card Styles - Glassmorphism */
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
-            border-color: rgba(56, 189, 248, 0.3);
-            background: rgba(30, 41, 59, 0.6);
-        }
-
-        /* Typography */
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3, h4 {
             font-family: var(--font-display);
             font-weight: 700;
-            letter-spacing: -0.02em;
-        }
-
-        h1 {
-            font-size: 4rem;
             line-height: 1.1;
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
-        h2 {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: #fff;
+        /* Glassmorphism Kart Yapısı */
+        .glass-card {
+            background: var(--bg-glass);
+            backdrop-filter: blur(var(--backdrop-blur));
+            -webkit-backdrop-filter: blur(var(--backdrop-blur));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            transition: var(--transition-smooth);
         }
 
-        p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
-            font-weight: 400;
-            line-height: 1.7;
+        .glass-card:hover {
+            background: var(--bg-glass-hover);
+            transform: translateY(-5px); /* Lift efekti */
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
         }
 
-        .tag {
-            display: inline-flex;
-            align-items: center;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--accent-primary);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 6px 14px;
-            border-radius: 100px;
-            margin-bottom: 20px;
-            align-self: flex-start;
-            border: 1px solid rgba(56, 189, 248, 0.2);
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: var(--spacing-sm) 0;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border-glass);
         }
 
-        /* Specific Grid Areas */
-
-        /* Hero Section */
-        .hero {
-            grid-column: span 4;
-            display: grid;
-            grid-template-columns: 1.4fr 1fr;
-            gap: 60px;
-            align-items: center;
-            padding: 60px;
-            min-height: 450px;
-            background: linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.6) 100%);
-        }
-
-        .hero-bio {
-            position: relative;
-            padding-left: 30px;
-        }
-
-        .hero-bio::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 10px;
-            bottom: 10px;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent-primary), var(--accent-secondary));
-            border-radius: 2px;
-        }
-
-        /* Showcase Section */
-        .showcase-1 {
-            grid-column: span 2;
-            min-height: 320px;
-        }
-
-        .showcase-2 {
-            grid-column: span 1;
-        }
-
-        .showcase-3 {
-            grid-column: span 1;
-        }
-
-        /* Services */
-        .services {
-            grid-column: span 1;
-            grid-row: span 2;
-        }
-
-        .service-list {
-            list-style: none;
-            margin-top: 24px;
-        }
-
-        .service-list li {
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            color: var(--text-muted);
-            font-size: 0.95rem;
+        nav {
             display: flex;
+            justify-content: space-between;
             align-items: center;
         }
 
-        .service-list li::before {
-            content: "•";
-            color: var(--accent-primary);
-            margin-right: 10px;
-            font-size: 1.2em;
+        .logo {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
         }
 
-        .service-list li:last-child {
-            border-bottom: none;
+        .logo span {
+            color: var(--color-accent);
         }
 
-        /* Founder / Studio Model */
-        .founder {
-            grid-column: span 2;
-        }
-
-        /* Contact */
-        .contact {
-            grid-column: span 1;
+        /* --- HERO SECTION --- */
+        .hero {
+            padding: var(--spacing-xl) 0 var(--spacing-lg);
+            min-height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-            border: none;
+            position: relative;
         }
 
-        .contact h2,
-        .contact p {
-            color: #0F172A;
+        /* Arkaplandaki soyut "Deep Teal" ışıltısı */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            right: 10%;
+            width: 400px;
+            height: 400px;
+            background: var(--color-accent);
+            filter: blur(150px);
+            opacity: 0.15;
+            z-index: -1;
+            border-radius: 50%;
         }
 
-        .contact p {
-            opacity: 0.8;
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-md);
+            font-weight: 600;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem); /* Responsive typography */
+            margin-bottom: var(--spacing-md);
+            max-width: 800px;
+        }
+
+        .hero h1 span {
+            display: block;
+            color: var(--text-secondary);
             font-weight: 500;
         }
 
-        .contact:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(56, 189, 248, 0.4);
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: var(--spacing-lg);
+            font-weight: 300;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            margin-top: 24px;
-            padding: 14px 28px;
-            background: #0F172A;
-            color: #fff;
-            font-weight: 600;
-            border-radius: 12px;
-            transition: all 0.2s;
-            font-family: var(--font-body);
+            padding: 1rem 2rem;
+            background: var(--text-primary);
+            color: var(--bg-body);
+            font-family: var(--font-display);
+            font-weight: 700;
+            border-radius: 100px; /* Pill shape */
+            transition: var(--transition-smooth);
         }
 
         .btn:hover {
-            background: #1E293B;
-            transform: translateX(5px);
+            background: var(--color-accent);
+            color: #fff;
+            transform: scale(1.05); /* Mikro etkileşim */
         }
 
-        /* Visual Elements */
-        .visual-box {
-            margin-top: auto;
-            height: 120px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.01));
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+        /* --- VALUE PROPOSITION (GRID) --- */
+        .value-prop {
+            padding: var(--spacing-lg) 0;
         }
 
-        .visual-box::after {
-            content: "";
-            position: absolute;
-            width: 100px;
-            height: 100px;
-            background: var(--accent-primary);
-            filter: blur(60px);
-            opacity: 0.4;
-            top: -20px;
-            right: -20px;
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
         }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-content h1 {
-                font-size: 3.5rem;
-            }
+        .value-card {
+            padding: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
         }
 
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+
+        .value-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--spacing-md);
+            color: var(--color-accent);
+        }
+
+        /* --- SERVICES SECTION --- */
+        .services {
+            padding: var(--spacing-lg) 0;
+        }
+
+        .section-header {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .service-item {
+            display: flex;
+            align-items: flex-start;
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+            border-bottom: 1px solid var(--border-glass);
+            transition: var(--transition-smooth);
+        }
+        
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-item:hover {
+            background: var(--bg-glass);
+            border-radius: var(--radius-md);
+        }
+
+        .service-number {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--color-accent);
+            margin-right: var(--spacing-md);
+            opacity: 0.7;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+        
+        .tech-stack {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .tech-pill {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            border: 1px solid var(--border-glass);
+            color: var(--text-secondary);
+            background: rgba(0,0,0,0.2);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: var(--spacing-lg) 0;
+            border-top: 1px solid var(--border-glass);
+            margin-top: var(--spacing-xl);
+            text-align: center;
+        }
+
+        .footer-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .social-links a {
+            color: var(--text-primary);
+            margin: 0 var(--spacing-xs);
+            opacity: 0.7;
+        }
+
+        .social-links a:hover {
+            opacity: 1;
+            color: var(--color-accent);
+        }
+
+        /* --- RESPONSIVE AYARLAR --- */
         @media (max-width: 768px) {
-            .container {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .bento-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .hero,
-            .showcase-1,
-            .showcase-2,
-            .showcase-3,
-            .services,
-            .founder,
-            .contact {
-                grid-column: span 1;
-            }
-
-            .hero {
-                padding: 40px;
-            }
-
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-
-            .services {
-                grid-row: auto;
             }
         }
     </style>
 </head>
-
 <body>
 
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="card hero">
-            <div class="hero-content">
-                <div class="tag">PsyMentAI Labs</div>
-                <h1>Engineering<br>Digital<br>Excellence.</h1>
+    <!-- NAVIGASYON -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    PsyMentAI <span>Labs</span>
+                </div>
+                <!-- Basit iletişim butonu (mailto veya link linki) -->
+                <a href="mailto:hello@psymentai.com" style="font-size: 0.9rem; font-weight: 500;">İletişim</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO ALANI -->
+        <section class="hero container">
+            <span class="hero-tag">Digital Product Studio</span>
+            <h1>
+                Fikirlerinizi <br>
+                <span style="color: var(--text-primary);">Dijital Zekaya Dönüştürüyoruz.</span>
+            </h1>
+            <p>
+                Büyük ajansların hantallığı olmadan, büyük ajans kalitesinde mühendislik ve tasarım. Butik yaklaşımla, global standartlarda yazılım mimarisi.
+            </p>
+            <div>
+                <a href="#contact" class="btn">Projeyi Başlat</a>
             </div>
-            <div class="hero-bio">
-                <p>
-                    A boutique digital product studio delivering enterprise-grade solutions.
-                    We combine high-level architectural expertise with the agility of a specialized team
-                    to build next-generation SaaS products and intelligent automation systems.
+        </section>
+
+        <!-- DEĞER ÖNERİSİ (VALUE PROP) - BENTO GRID -->
+        <section class="value-prop container">
+            <div class="bento-grid">
+                <!-- KART 1: Direct Access -->
+                <div class="glass-card value-card">
+                    <div class="icon-box">
+                        <!-- Icon: User -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div>
+                        <h3>Direct Access</h3>
+                        <p>Aracı yok, hesap yöneticisi yok. Doğrudan ürününüzü inşa eden mimar ile çalışırsınız.</p>
+                    </div>
+                </div>
+
+                <!-- KART 2: Full Cycle -->
+                <div class="glass-card value-card">
+                    <div class="icon-box">
+                         <!-- Icon: Layers -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3>Idea to Market</h3>
+                        <p>Sadece kodlamıyoruz, süreci yönetiyoruz. Fikirden markete kadar tam döngü ürün geliştirme.</p>
+                    </div>
+                </div>
+
+                <!-- KART 3: Craftsmanship -->
+                <div class="glass-card value-card" style="border-color: var(--color-accent-glow);">
+                    <div class="icon-box" style="color: #fff;">
+                         <!-- Icon: Code -->
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <div>
+                        <h3>Mühendislik & Zanaat</h3>
+                        <p>Her satır kodda estetik ve performans kaygısı. Tıknaz "template"ler değil, özel dikim çözümler.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HİZMETLER (SERVICES) -->
+        <section id="services" class="services container">
+            <div class="section-header">
+                <h2>Uzmanlık Alanları</h2>
+                <p style="color: var(--text-secondary); max-width: 500px;">
+                    Modern teknolojiler kullanılarak inşa edilmiş, geleceğe hazır dijital varlıklar.
                 </p>
             </div>
-        </div>
 
-        <!-- Showcase 1: PsyMentAI -->
-        <div class="card showcase-1">
-            <div>
-                <div class="tag">Flagship Product</div>
-                <h2>PsyMentAI</h2>
-                <p>Cognitive intelligence for mental wellness. An advanced mobile platform leveraging AI to deliver
-                    personalized, adaptive mental health support.</p>
+            <!-- Hizmet 1 -->
+            <div class="service-item">
+                <span class="service-number">01</span>
+                <div class="service-content">
+                    <h3>Ölçeklenebilir Altyapılar & Sistem Mimarisi</h3>
+                    <p>Milyonlarca isteği karşılayabilecek, güvenli ve genişletilebilir backend yapıları.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">.NET Core</span>
+                        <span class="tech-pill">Node.js</span>
+                        <span class="tech-pill">Microservices</span>
+                    </div>
+                </div>
             </div>
-            <div class="visual-box"></div>
-        </div>
 
-        <!-- Showcase 2: Enterprise Bots -->
-        <div class="card showcase-2">
-            <div class="tag">Automation</div>
-            <h2>Enterprise Bots</h2>
-            <p>Autonomous digital workforce. Python-based systems designed to orchestrate complex business workflows
-                24/7.</p>
-        </div>
+            <!-- Hizmet 2 -->
+            <div class="service-item">
+                <span class="service-number">02</span>
+                <div class="service-content">
+                    <h3>Kullanıcı Odaklı Mobil Deneyimler</h3>
+                    <p>Sadece çalışan değil, kullanıcının parmak uçlarında akan iOS ve Android uygulamaları.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">React Native</span>
+                        <span class="tech-pill">SwiftUI</span>
+                        <span class="tech-pill">UX/UI Design</span>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Showcase 3: R&D -->
-        <div class="card showcase-3">
-            <div class="tag">R&D</div>
-            <h2>Architecture</h2>
-            <p>Scalable .NET Core infrastructure & distributed system research.</p>
-        </div>
+            <!-- Hizmet 3 -->
+            <div class="service-item">
+                <span class="service-number">03</span>
+                <div class="service-content">
+                    <h3>7/24 Çalışan Otonom Dijital İşgücü</h3>
+                    <p>İş süreçlerinizi otomatize eden akıllı botlar ve yapay zeka entegrasyonları.</p>
+                    <div class="tech-stack">
+                        <span class="tech-pill">Python</span>
+                        <span class="tech-pill">RPA</span>
+                        <span class="tech-pill">AI Agents</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Services -->
-        <div class="card services">
-            <div class="tag">Expertise</div>
-            <h2>Capabilities</h2>
-            <ul class="service-list">
-                <li>Mobile Engineering</li>
-                <li>Backend Architecture</li>
-                <li>System Design</li>
-                <li>Cloud Infrastructure</li>
-                <li>AI Integration</li>
-            </ul>
-        </div>
+        <!-- İLETİŞİM / FOOTER -->
+        <footer id="contact">
+            <div class="container">
+                <div class="glass-card" style="padding: var(--spacing-lg); max-width: 600px; margin: 0 auto; text-align: center;">
+                    <h2 style="margin-bottom: 1rem;">Bir sonraki büyük projenizi konuşalım.</h2>
+                    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+                        Uygunluk durumu ve proje detayları için e-posta gönderebilirsiniz.
+                    </p>
+                    <a href="mailto:hello@psymentai.com" class="btn">hello@psymentai.com</a>
+                </div>
 
-        <!-- Founder / Studio Model -->
-        <div class="card founder">
-            <div class="tag">The Studio Model</div>
-            <h2>Precision & Agility</h2>
-            <p>
-                We eliminate the inefficiencies of traditional agencies.
-                At PsyMentAI Labs, you partner directly with the Lead Architect.
-                This ensures that your vision is translated into code with zero signal loss,
-                delivering robust, scalable, and market-ready products faster.
-            </p>
-        </div>
+                <div class="footer-content" style="margin-top: 4rem;">
+                    <div class="social-links" style="margin-bottom: 1rem;">
+                        <a href="#">LinkedIn</a>
+                        <a href="#">GitHub</a>
+                        <a href="#">Twitter/X</a>
+                    </div>
+                    <p>&copy; 2025 PsyMentAI Labs. All rights reserved.</p>
+                    <p style="font-size: 0.8rem; opacity: 0.5;">Powered by Design & Code</p>
+                </div>
+            </div>
+        </footer>
+    </main>
 
-        <!-- Contact -->
-        <a href="mailto:contact@psymentai.com" class="card contact">
-            <h2>Start a Project</h2>
-            <p>Accepting select partnerships.</p>
-            <div class="btn">Get in Touch &rarr;</div>
-        </a>
-    </div>
-
+    <script>
+        // Basit mikro-etkileşim scripti
+        // Hover efektlerini JS ile güçlendirmek isterseniz burayı kullanabilirsiniz.
+        // Şu an CSS hover efektleri performans açısından yeterlidir.
+        console.log("PsyMentAI Labs: System Online.");
+    </script>
 </body>
-
 </html>
