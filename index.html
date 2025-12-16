@@ -607,10 +607,94 @@
             .brand-logo span {
                 display: none;
             }
+        }
 
-            .brand-logo::after {
-                content: 'PsyMentAI';
-                font-size: 1rem;
+        /* --- TECH STACK MARQUEE (Sonsuz Kayma Efekti) --- */
+        .tech-stack-strip {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-light);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tech-stack-strip::before,
+        .tech-stack-strip::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .tech-stack-strip::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-body), transparent);
+        }
+
+        .tech-stack-strip::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-body), transparent);
+        }
+
+        .marquee-wrapper {
+            display: flex;
+            width: 100%;
+            overflow: hidden;
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            animation: scroll 30s linear infinite;
+            /* Durdurmak istersen hover ekleyebilirsin: */
+            /* animation-play-state: running; */
+        }
+
+        /* Mouse ile üzerine gelince dursun istersen: */
+        /* .marquee-wrapper:hover .marquee-content { animation-play-state: paused; } */
+
+        .tech-logo {
+            height: 35px;
+            /* Logo yüksekliği */
+            width: auto;
+            opacity: 0.5;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            display: block;
+        }
+
+        .tech-logo:hover {
+            opacity: 1;
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+
+        /* Logonun yanına isim yazmak istersen tooltip kullanabilirsin ama sadece logo daha havalı */
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+
+            /* İçerik iki katına çıktığı için -50% */
+        }
+
+        @media (max-width: 768px) {
+            .marquee-content {
+                gap: 2rem;
+            }
+
+            .tech-logo {
+                height: 28px;
             }
         }
     </style>
@@ -624,7 +708,7 @@
                 <img src="logo-pure.png" alt="PsyMentAI Logo - Yapay Zeka Stüdyosu">
                 PsyMentAI Labs
             </a>
-            <a href="mailto:info@psymentai.com" class="btn btn-primary header-btn">
+            <a href="mailto:psymentorai@gmail.com" class="btn btn-primary header-btn">
                 İletişim
             </a>
         </div>
@@ -643,22 +727,53 @@
                     Fikirden ürüne, doğrudan yazılım mimarı ile çalışın.
                 </p>
                 <div class="hero-actions">
-                    <a href="mailto:info@psymentai.com" class="btn btn-primary">Projeyi Başlatalım</a>
+                    <a href="mailto:psymentorai@gmail.com" class="btn btn-primary">Projeyi Başlatalım</a>
                     <a href="#services" class="btn btn-outline">Neler Yapıyoruz?</a>
                 </div>
             </div>
         </section>
 
         <div class="tech-stack-strip">
-            <div class="container tech-logos">
+            <div class="container" style="margin-bottom: 1rem; text-align: center; opacity: 0.6;">
                 <span
-                    style="font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;">Powered
-                    By:</span>
-                <span>Microsoft .NET</span>
-                <span>React Native</span>
-                <span>Python</span>
-                <span>Docker</span>
-                <span>OpenAI</span>
+                    style="font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600;">
+                    Powered by Modern Tech Stack
+                </span>
+            </div>
+
+            <div class="marquee-wrapper">
+                <div class="marquee-content" style="animation-duration: 60s;"> <img
+                        src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg"
+                        alt=".NET Core" class="tech-logo" title=".NET Core 8">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+                        alt="Python" class="tech-logo" title="Python & AI Stack">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+                        alt="React Native" class="tech-logo" title="React Native & Expo">
+
+                    <svg class="tech-logo" viewBox="0 0 24 24" fill="currentColor" style="color: #fff;"
+                        title="OpenAI & GPT-4">
+                        <path
+                            d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.3829a.0804.0804 0 0 1-.043-.0615V2.7073a4.4792 4.4792 0 0 1 4.5883 2.193 4.485 4.485 0 0 1 1.5574 2.1975l-.142-.0805-4.7783-2.7582a.7712.7712 0 0 0-.7806 0l-5.8428 3.3685v-2.3324a.0804.0804 0 0 1 .0332-.0615l4.873-2.8103a4.4992 4.4992 0 0 1 6.1408 1.6464zM13.2548 2.7073v5.611a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865a4.504 4.504 0 0 1-1.641-4.2243 4.4792 4.4792 0 0 1 2.3607-1.9728v5.6727zm-1.5725 6.1364l-2.02-1.1686a.071.071 0 0 1-.038-.052V2.0405a4.504 4.504 0 0 1 4.4945 4.4944 4.4755 4.4755 0 0 1-2.8764 1.0408l-.1419.0804-4.7783 2.7582a.7948.7948 0 0 0-.3927.6813v6.7369l-2.02-1.1686a.071.071 0 0 1-.038-.052z" />
+                    </svg>
+                    <img src="https://cdn.simpleicons.org/langchain/ffffff" alt="LangChain" class="tech-logo"
+                        title="LangChain (AI Agents)">
+                    <img src="https://cdn.simpleicons.org/anthropic/ffffff" alt="Anthropic Claude" class="tech-logo"
+                        title="Anthropic Claude">
+                    <img src="https://cdn.simpleicons.org/huggingface/ffffff" alt="Hugging Face" class="tech-logo"
+                        title="Hugging Face">
+                    <img src="https://cdn.simpleicons.org/supabase/ffffff" alt="Supabase" class="tech-logo"
+                        title="Supabase">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+                        alt="Docker" class="tech-logo" title="Docker Containers">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+                        alt="Kubernetes" class="tech-logo" title="Kubernetes (K8s)">
+
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+                        alt="AWS" class="tech-logo" title="AWS Cloud"
+                        style="filter: brightness(0) invert(1) grayscale(100%); opacity: 0.6;">
+                    <img src="https://cdn.simpleicons.org/tailwindcss/ffffff" alt="Tailwind CSS" class="tech-logo"
+                        title="Tailwind CSS">
+                </div>
             </div>
         </div>
 
@@ -818,7 +933,7 @@
                 <p style="color: var(--text-secondary); margin-bottom: 2rem;">
                     Sizinle tanışmak ve projenizin teknik yol haritasını çıkarmak isteriz.
                 </p>
-                <a href="mailto:info@psymentai.com" class="btn btn-primary">Ücretsiz Ön Görüşme</a>
+                <a href="mailto:psymentorai@gmail.com" class="btn btn-primary">Ücretsiz Ön Görüşme</a>
             </div>
         </section>
     </main>
