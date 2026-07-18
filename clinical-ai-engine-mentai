@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MentAI | Zihninin Yankı Odasından Çık, Kendi İçgörünü Keşfet</title>
+    
+    <!-- AI-SEO Optimizasyon Etiketleri -->
+    <meta name="description" content="Uzman psikolog ve psikiyatrların klinik görüşleriyle şekillendirilmiş MentAI algoritmaları, düşünce örüntülerini fark etmeni sağlayan güvenli ve yargısız bir içgörü aynasıdır.">
+    <meta name="keywords" content="MentAI, içgörü, farkındalık uygulaması, psikolojik örüntü, uzman onaylı yapay zeka, BDT, bilişsel davranışçı terapi, sokratik sorgulama, duygusal iklim, somatik pratikler">
+
+    <!-- Tipografi -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --primary-light: rgba(108, 92, 231, 0.08);
+            --bg-color: #FAFAFA;
+            --surface: #FFFFFF;
+            --text-main: #2D3436;
+            --text-muted: #636E72;
+            --border-color: rgba(0, 0, 0, 0.06);
+            
+            --mood-great: #00B894;
+            --mood-neutral: #FDCB6E;
+            --mood-hard: #FF7675;
+            
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --radius-sm: 8px;
+            
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.03);
+            --shadow-md: 0 12px 32px rgba(0,0,0,0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* LAYOUT & GRID */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 96px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section:last-child {
+            border-bottom: none;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .reverse-mobile {
+                order: -1;
+            }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            padding: 120px 0 80px 0;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(108,92,231,0.03) 0%, rgba(250,250,250,1) 100%);
+        }
+
+        .app-icon {
+            width: 88px;
+            height: 88px;
+            background-color: var(--primary);
+            border-radius: 24px;
+            margin: 0 auto 32px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: bold;
+            box-shadow: var(--shadow-md);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            color: #1A1A1A;
+        }
+
+        .hero .subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+            font-weight: 400;
+        }
+
+        .badge-expert {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--primary);
+            border: 1px solid rgba(108, 92, 231, 0.2);
+            margin-bottom: 32px;
+        }
+
+        /* TYPOGRAPHY */
+        h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+        }
+
+        .lead-text {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        /* BUTTONS */
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            padding: 18px 36px;
+            border-radius: 100px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(108, 92, 231, 0.4);
+        }
+
+        /* UI CARDS (Meaningfully placed) */
+        .ui-showcase {
+            position: relative;
+            background: white;
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .ui-showcase::before {
+            content: '';
+            position: absolute;
+            top: -10px; right: -10px; bottom: 10px; left: 10px;
+            background: var(--primary-light);
+            z-index: -1;
+            border-radius: var(--radius-lg);
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+
+        .card:last-child { margin-bottom: 0; }
+
+        /* Input Mockup */
+        .input-mock {
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            min-height: 120px;
+            color: #A0AEC0;
+            font-size: 15px;
+            margin-bottom: 16px;
+            background: #FAFAFA;
+        }
+
+        /* Diagnosis UI */
+        .diagnosis-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .diagnosis-icon-bg {
+            background-color: rgba(108, 92, 231, 0.1);
+            padding: 10px;
+            border-radius: 12px;
+        }
+
+        .diagnosis-title {
+            font-weight: 700;
+            font-size: 16px;
+            color: var(--text-main);
+        }
+
+        .diagnosis-text {
+            color: var(--primary);
+            font-size: 15px;
+            line-height: 1.6;
+            font-weight: 500;
+        }
+
+        /* Mood Tracker UI */
+        .mood-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .mood-badges {
+            display: flex;
+            gap: 8px;
+        }
+
+        .badge {
+            background: var(--primary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .mood-grid {
+            display: flex;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .mood-node {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            background-color: #F1F2F6;
+        }
+
+        .node-neutral { background-color: var(--mood-neutral); }
+        .node-hard { background-color: var(--mood-hard); }
+        .node-outline { border: 2px solid var(--primary); background: transparent; }
+
+        /* Laboratory UI */
+        .card-purple {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .lab-subtitle {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0.9;
+        }
+        
+        .lab-text {
+            font-size: 16px;
+            line-height: 1.6;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .lab-action {
+            background: rgba(0,0,0,0.15);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .footer {
+            padding: 64px 0;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="container">
+            <div class="badge-expert">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                Uzman Psikolog ve Psikiyatrların Görüşleriyle Şekillendirildi
+            </div>
+            
+            <div class="app-icon" id="app-icon">
+              <img src="mentAI.png" alt="MentAI Logo">
+            </div>
+            <h1>Zihnini Dışarıdan İzlemeye<br>Ne Dersin?</h1>
+            
+            <p class="subtitle">
+                MentAI, sana ne yapman gerektiğini söylemez veya "her şey mükemmel" demez. Klinik algoritmalarla çalışan, kendi düşünce örüntülerini fark etmeni ve kendi içgörünü keşfetmeni sağlayan güvenli bir aynadır.
+            </p>
+            
+            <a href="#indir" class="btn-primary">
+                Kendi İçgörünü Keşfet
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <!-- BÖLÜM 1: İÇGÖRÜ AYNASI (Yazma & Yüzleşme) -->
+        <section class="section grid-2">
+            <div>
+                <h2>Farklı Bir Perspektife İhtiyacın Olabilir Mi?</h2>
+                <p class="lead-text">
+                    Bazen bir düşüncenin içinde o kadar kayboluruz ki, ona dışarıdan bakmayı unuturuz. Zihninden geçenleri kelimelere döktüğünde, onları objektif bir veriye dönüştürmüş olursun.
+                </p>
+                <p class="lead-text" style="font-size: 15px;">
+                    MentAI yargılamaz. Bilişsel Davranışçı Terapi (BDT) ve Sokratik sorgulama metodolojilerine dayanan algoritmasıyla yazdıklarını okur ve sana duymak istediğini değil, fark etmen gerekeni sorar. Acaba olaylara sadece tek bir pencereden bakıyor olabilir misin?
+                </p>
+            </div>
+            
+            <div class="ui-showcase">
+                <!-- UI: Input -->
+                <div class="card" style="margin-bottom: 24px;">
+                    <div style="display:flex; gap:8px; margin-bottom:16px;">
+                        <span style="background:var(--primary-light); color:var(--primary); padding:6px 12px; border-radius:16px; font-size:13px; font-weight:600;">Düğümü Çöz</span>
+                    </div>
+                    <div class="input-mock">Zihnini buraya dök... Belki de seni asıl yoran şey, olayın kendisi değil ona yüklediğin anlamdır.</div>
+                </div>
+
+                <!-- UI: Diagnosis -->
+                <div class="card" style="box-shadow: 0 4px 12px rgba(108,92,231,0.08); border-color: rgba(108,92,231,0.2);">
+                    <div class="diagnosis-header">
+                        <div class="diagnosis-icon-bg">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 16v-4"></path><path d="M12 8h.01"></path></svg>
+                        </div>
+                        <div class="diagnosis-title">Düşünsel olarak biraz zorlanıyor olabilir misin?</div>
+                    </div>
+                    <p class="diagnosis-text">
+                        Son kayıtlarında "Performans Endişeli" eğilimlerin belirginleştiği görülüyor. Bu durumu yönetmek için reaktif kararlar almak yerine, süreci dışarıdan bir gözlemci gibi analiz etmeye ne dersin?
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- BÖLÜM 2: BÜYÜK RESİM (Örüntü ve Duygu Takibi) -->
+        <section class="section grid-2">
+            <div class="ui-showcase reverse-mobile">
+                <div class="card">
+                    <div class="mood-header">
+                        <div style="font-weight: 700; font-size: 16px;">Duygusal İklimin</div>
+                        <div class="mood-badges">
+                            <span class="badge">14G</span>
+                        </div>
+                    </div>
+                    <div class="mood-grid" style="margin-bottom: 16px;">
+                        <div class="mood-node node-neutral"></div>
+                        <div class="mood-node node-neutral"></div>
+                        <div class="mood-node node-hard"></div>
+                        <div class="mood-node node-neutral"></div>
+                        <div class="mood-node"></div>
+                        <div class="mood-node"></div>
+                        <div class="mood-node"></div>
+                        <div class="mood-node"></div>
+                        <div class="mood-node node-outline"></div>
+                    </div>
+                    <div style="font-size: 13px; color: var(--text-muted); line-height: 1.5;">
+                        "Son 2 haftalık örüntülerinde belirsizlik anlarında zorlandığını görüyoruz. Bu dalgalanmalar çok doğal. Dalganın kendisiyle savaşmak yerine onu tanımaya odaklanalım."
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2>Geçmişteki Kayıtların Sana Ne Söylüyor?</h2>
+                <p class="lead-text">
+                    Zorlu bir gün geçirdiğimizde, sanki tüm hayatımız o günden ibaretmiş gibi hissederiz. Hafıza, duyguların etkisiyle bazen bizi yanıltabilir.
+                </p>
+                <p class="lead-text" style="font-size: 15px;">
+                    Sistemin "Büyük Resim" modülü, duygusal ikliminin haritasını çıkarır. Uzman görüşleriyle desteklenen örüntü analizi sayesinde, hangi tetikleyicilerin hangi günlerde seni daha çok zorladığını şefkatli ve nesnel bir şekilde gözlemlersin. Aslında karanlık sandığın tablo, sadece geçici bir buluttan ibaret olabilir.
+                </p>
+            </div>
+        </section>
+
+        <!-- BÖLÜM 3: KLİNİK LABORATUVAR (Somatik Pratikler) -->
+        <section class="section grid-2">
+            <div>
+                <h2>Zihin Yorulduğunda, Bedene Dönmek İster Misin?</h2>
+                <p class="lead-text">
+                    Bazen zihindeki düğümleri sadece düşünerek çözemeyiz. Bilişsel yük çok arttığında ve kelimeler yetersiz kaldığında, en iyi çözüm sadece durmak ve otonom sinir sistemimizi dengelemektir.
+                </p>
+                <p class="lead-text" style="font-size: 15px;">
+                    MentAI algoritmaları, yazdıklarında aşırı stres veya bilişsel yorgunluk tespit ettiğinde seni "Klinik Laboratuvar"a yönlendirir. Klinik olarak kanıtlanmış 5-4-3-2-1 Köklenme veya Nefes pratikleriyle, seni geçmişin pişmanlıklarından ve geleceğin kaygılarından alıp güvenli olan tek yere, "Şu An"a davet eder.
+                </p>
+            </div>
+
+            <div class="ui-showcase">
+                <div class="card card-purple">
+                    <div class="lab-subtitle">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        MENTAI ŞEFKATLİ GÖZLEMİ
+                    </div>
+                    <p class="lab-text">
+                        Son anlattıklarında artan bir bilişsel yük tespit ettik. Şu an düşünce döngüsünden bir adım geriye çıkıp, somatik (bedensel) olarak an'a dönmek ister misin?
+                    </p>
+                    <div class="lab-action">
+                        <span style="display:flex; align-items:center; gap:8px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            Köklenme (5-4-3-2-1) Egzersizi
+                        </span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA BÖLÜMÜ -->
+        <section class="section" style="text-align: center; padding-bottom: 0;">
+            <h2 style="font-size: 36px; margin-bottom: 24px;">Kendi Zihnini Güvenle Keşfetmeye Başla</h2>
+            <p class="lead-text" style="max-width: 600px; margin: 0 auto 40px auto;">
+                Uzman rehberliğinde şekillenen yapay zeka algoritmalarıyla, kendi düşüncelerinin izini sür. MentAI ile yüzleş, gözlemle ve dengelen.
+            </p>
+            <a href="#indir" class="btn-primary" style="padding: 20px 48px; font-size: 18px;">
+                Uygulamayı İndir
+            </a>
+        </section>
+
+        <footer class="footer">
+            <p style="margin-bottom: 8px;">MentAI &copy; 2026. Tüm hakları saklıdır.</p>
+            <p style="font-size: 12px; opacity: 0.7;">
+                Not: MentAI klinik bir tedavi aracı değildir, içgörü geliştirmeye yardımcı olan psikoloji tabanlı bir farkındalık sistemidir. Kriz anlarında lütfen bir sağlık profesyoneline başvurun. Tüm verileriniz cihazınızda şifrelenir.
+            </p>
+        </footer>
+
+    </div>
+</body>
+</html>
