@@ -84,14 +84,33 @@
         .section-title { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 3rem; }
         
         .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
-        .card { background: var(--bg-surface); border: 1px solid var(--border); border-radius: 24px; padding: 2.5rem; transition: var(--transition); position: relative; overflow: hidden; }
+        
+        /* Card Base */
+        .card { 
+            background: var(--bg-surface); 
+            border: 1px solid var(--border); 
+            border-radius: 24px; 
+            padding: 2.5rem; 
+            transition: var(--transition); 
+            position: relative; 
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+        }
         .card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-5px); }
+        
+        /* Clickable Card (MentAI) */
+        a.card { text-decoration: none; color: inherit; cursor: pointer; }
+        a.card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(255,127,80,0.1); }
+        a.card .card-arrow { transition: transform 0.3s; color: var(--primary); }
+        a.card:hover .card-arrow { transform: translateX(5px) translateY(-5px); }
+
         .card h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; }
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; flex-grow: 1; }
         
         .card-large { grid-column: span 8; }
         .card-small { grid-column: span 4; }
-        .status-badge { font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; background: rgba(139, 92, 246, 0.2); color: var(--secondary); margin-bottom: 1rem; display: inline-block; }
+        .status-badge { font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; background: rgba(139, 92, 246, 0.2); color: var(--secondary); margin-bottom: 1rem; display: inline-block; width: fit-content; }
 
         /* Tech Marquee */
         .marquee { padding: 4rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 50px 0; overflow: hidden; background: rgba(255,255,255,0.01); }
@@ -112,7 +131,7 @@
             .card-large, .card-small { grid-column: span 12; }
             .hero { text-align: center; }
             .hero p { margin: 0 auto 3rem; }
-            .btn-ghost { margin-left: 0; margin-top: 1rem; width: 100%; }
+            .btn-ghost { margin-left: 0; margin-top: 1rem; width: 100%; justify-content: center; }
             .btn-primary { width: 100%; justify-content: center; }
         }
     </style>
@@ -165,16 +184,24 @@
             <h2 class="section-title">Teknoloji Üretim Merkezi</h2>
             
             <div class="bento-grid">
-                <div class="card card-large">
-                    <span class="status-badge">PRODUCTION READY</span>
+                
+                <!-- Güncellenen ve Linklenen MentAI Kartı -->
+                <a href="clinical-ai-engine-mentai.html" class="card card-large">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+                        <span class="status-badge" style="margin-bottom: 0;">PRODUCTION READY</span>
+                        <svg class="card-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </div>
                     <h3>Project: MentAI</h3>
                     <p>Bilişsel Davranışçı Terapi (CBT) protokollerini ve Stoacı felsefeyi temel alan, LLM katmanları üzerinde özel yönlendirme algoritmalarıyla kurgulanmış bilişsel asistan mimarisi. Kullanıcının duygu durumunu analiz ederek kişiselleştirilmiş rehberlik sunar.</p>
                     <div style="display: flex; gap: 10px;">
-                        <span style="font-size: 0.75rem; color: var(--primary);">#AI</span>
-                        <span style="font-size: 0.75rem; color: var(--primary);">#Psychology</span>
-                        <span style="font-size: 0.75rem; color: var(--primary);">#React-Native</span>
+                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#AI</span>
+                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#Psychology</span>
+                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#React-Native</span>
                     </div>
-                </div>
+                </a>
 
                 <div class="card card-small">
                     <span class="status-badge">R&D PHASE</span>
