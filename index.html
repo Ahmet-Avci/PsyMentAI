@@ -47,7 +47,6 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-        /* Background Glows */
         .glow {
             position: fixed; width: 40vw; height: 40vw; border-radius: 50%;
             filter: blur(120px); opacity: 0.1; z-index: -1; pointer-events: none;
@@ -55,7 +54,6 @@
         .glow-1 { top: -10%; left: -10%; background: var(--accent); }
         .glow-2 { bottom: -10%; right: -10%; background: var(--secondary); }
 
-        /* Header */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(5, 7, 10, 0.8); backdrop-filter: blur(20px);
@@ -65,74 +63,86 @@
         .logo { display: flex; align-items: center; gap: 12px; font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; color: #fff; text-decoration: none; }
         .logo img { height: 32px; }
 
-        /* Hero */
+
+
+        .lang-switcher {
+            display: flex; align-items: center; gap: 4px; margin-right: 16px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
+            border-radius: 100px; padding: 4px;
+        }
+        .lang-btn {
+            background: none; border: none; color: var(--text-muted);
+            font-family: var(--font-body); font-size: 0.8rem; font-weight: 600;
+            padding: 4px 10px; border-radius: 100px; cursor: pointer;
+            transition: var(--transition);
+        }
+        .lang-btn.active { background: var(--primary); color: #fff; }
+        .lang-btn:hover:not(.active) { color: var(--text-main); }
+        .header-actions { display: flex; align-items: center; }
+
         .hero { padding: 180px 0 100px; text-align: left; }
         .badge { display: inline-block; padding: 6px 16px; border-radius: 100px; background: rgba(255,127,80,0.1); border: 1px solid rgba(255,127,80,0.2); color: var(--primary); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
         .hero h1 { font-family: var(--font-heading); font-size: clamp(2.5rem, 6vw, 4.5rem); line-height: 1.1; margin-bottom: 2rem; max-width: 900px; }
         .gradient { background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { font-size: 1.25rem; color: var(--text-muted); max-width: 650px; margin-bottom: 3rem; font-weight: 300; }
 
-        /* Buttons */
         .btn { display: inline-flex; align-items: center; padding: 1rem 2.5rem; border-radius: 100px; font-weight: 600; text-decoration: none; transition: var(--transition); font-family: var(--font-heading); }
         .btn-primary { background: var(--primary); color: #fff; box-shadow: 0 10px 20px rgba(255,127,80,0.2); }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(255,127,80,0.4); }
         .btn-ghost { color: var(--text-main); border: 1px solid var(--border); margin-left: 1rem; }
         .btn-ghost:hover { background: rgba(255,255,255,0.05); }
 
-        /* Bento Section */
         .section-label { font-size: 0.9rem; color: var(--primary); font-weight: 600; margin-bottom: 1rem; display: block; }
         .section-title { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 3rem; }
-        
         .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 1.5rem; }
-        
-        /* Card Base */
-        .card { 
-            background: var(--bg-surface); 
-            border: 1px solid var(--border); 
-            border-radius: 24px; 
-            padding: 2.5rem; 
-            transition: var(--transition); 
-            position: relative; 
-            overflow: hidden; 
-            display: flex;
-            flex-direction: column;
+
+        .card {
+            background: var(--bg-surface); border: 1px solid var(--border);
+            border-radius: 24px; padding: 2.5rem; transition: var(--transition);
+            position: relative; overflow: hidden; display: flex; flex-direction: column;
         }
         .card:hover { border-color: rgba(255,255,255,0.2); transform: translateY(-5px); }
-        
-        /* Clickable Card (MentAI) */
         a.card { text-decoration: none; color: inherit; cursor: pointer; }
         a.card:hover { border-color: var(--primary); box-shadow: 0 10px 30px rgba(255,127,80,0.1); }
         a.card .card-arrow { transition: transform 0.3s; color: var(--primary); }
         a.card:hover .card-arrow { transform: translateX(5px) translateY(-5px); }
-
         .card h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 1rem; }
-        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 2rem; flex-grow: 1; }
-        
+        .card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
         .card-large { grid-column: span 8; }
         .card-small { grid-column: span 4; }
         .status-badge { font-size: 0.7rem; font-weight: 700; padding: 4px 12px; border-radius: 50px; background: rgba(139, 92, 246, 0.2); color: var(--secondary); margin-bottom: 1rem; display: inline-block; width: fit-content; }
 
-        /* Tech Marquee */
+        .play-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(255,127,80,0.1); border: 1px solid rgba(255,127,80,0.25);
+            color: var(--primary); font-size: 0.8rem; font-weight: 600;
+            padding: 8px 16px; border-radius: 100px; text-decoration: none;
+            transition: var(--transition); width: fit-content;
+        }
+        .play-btn:hover { background: var(--primary); color: #fff; border-color: var(--primary); transform: translateY(-2px); }
+
         .marquee { padding: 4rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 50px 0; overflow: hidden; background: rgba(255,255,255,0.01); }
         .marquee-inner { display: flex; gap: 4rem; animation: scroll 40s linear infinite; width: max-content; }
         .marquee-inner img { height: 35px; opacity: 0.4; filter: grayscale(1); transition: 0.3s; }
         .marquee-inner img:hover { opacity: 1; filter: grayscale(0); transform: scale(1.1); }
         @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* Philosophy */
         .statement { padding: 80px 0; text-align: center; }
         .statement-box { max-width: 800px; margin: 0 auto; padding: 4rem; border-radius: 32px; background: linear-gradient(145deg, rgba(255,255,255,0.02), transparent); border: 1px solid var(--border); }
 
-        /* Footer */
         footer { padding: 4rem 0; border-top: 1px solid var(--border); text-align: center; color: var(--text-muted); font-size: 0.85rem; }
 
-        /* Mobile */
         @media (max-width: 992px) {
             .card-large, .card-small { grid-column: span 12; }
             .hero { text-align: center; }
             .hero p { margin: 0 auto 3rem; }
             .btn-ghost { margin-left: 0; margin-top: 1rem; width: 100%; justify-content: center; }
             .btn-primary { width: 100%; justify-content: center; }
+            .lang-switcher { margin-right: 8px; }
+        }
+        @media (max-width: 480px) {
+            .hero-btns { display: flex; flex-direction: column; gap: 12px; }
+            .btn-ghost { margin-left: 0; margin-top: 0; }
         }
     </style>
 </head>
@@ -147,22 +157,38 @@
                 <img src="logo-pure.png" alt="PsyMentAI Logo">
                 <span>PsyMentAI Labs</span>
             </a>
-            <a href="mailto:ahmttavci@gmail.com" class="btn btn-primary" style="padding: 0.5rem 1.5rem; font-size: 0.85rem;">İletişime Geç</a>
+            <div class="header-actions">
+                <div class="lang-switcher" role="group" aria-label="Language / Dil">
+                    <button class="lang-btn active" id="btn-tr" onclick="setLang('tr')" aria-pressed="true">TR</button>
+                    <button class="lang-btn" id="btn-en" onclick="setLang('en')" aria-pressed="false">EN</button>
+                </div>
+                <a href="mailto:ahmttavci@gmail.com" class="btn btn-primary"
+                   style="padding: 0.5rem 1.5rem; font-size: 0.85rem;"
+                   data-tr="İletişime Geç" data-en="Contact">İletişime Geç</a>
+            </div>
         </div>
     </header>
 
     <main>
         <section class="container hero">
-            <span class="badge">R&D Lab // Technology Studio</span>
-            <h1>Yazılım Mimarisinde <br> <span class="gradient">Analitik ve Bilişsel Vizyon.</span></h1>
-            <p>Butik projelerden kurumsal sistem mimarilerine; modern mühendislik prensiplerini yapay zeka ile harmanlayarak ölçeklenebilir dijital yapılar inşa ediyorum.</p>
+            <span class="badge">R&amp;D Lab // Technology Studio</span>
+            <h1 data-tr="Yazılım Mimarisinde <br> <span class='gradient'>Analitik ve Bilişsel Vizyon.</span>"
+                data-en="Advanced Software Architecture <br> <span class='gradient'>Analytical &amp; Cognitive Vision.</span>">
+                Yazılım Mimarisinde <br> <span class="gradient">Analitik ve Bilişsel Vizyon.</span>
+            </h1>
+            <p data-tr="Butik projelerden kurumsal sistem mimarilerine; modern mühendislik prensiplerini yapay zeka ile harmanlayarak ölçeklenebilir dijital yapılar inşa ediyorum."
+               data-en="From boutique projects to enterprise system architectures; I build scalable digital structures by blending modern engineering principles with artificial intelligence.">
+                Butik projelerden kurumsal sistem mimarilerine; modern mühendislik prensiplerini yapay zeka ile harmanlayarak ölçeklenebilir dijital yapılar inşa ediyorum.
+            </p>
             <div class="hero-btns">
-                <a href="mailto:ahmttavci@gmail.com" class="btn btn-primary">İnovasyonu Başlat</a>
-                <a href="#labs" class="btn btn-ghost">Laboratuvarı İncele</a>
+                <a href="mailto:ahmttavci@gmail.com" class="btn btn-primary"
+                   data-tr="İnovasyonu Başlat" data-en="Start a Project">İnovasyonu Başlat</a>
+                <a href="#labs" class="btn btn-ghost"
+                   data-tr="Laboratuvarı İncele" data-en="Explore the Lab">Laboratuvarı İncele</a>
             </div>
         </section>
 
-        <div class="marquee">
+        <div class="marquee" aria-hidden="true">
             <div class="marquee-inner">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-original.svg" alt=".NET Core">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
@@ -181,51 +207,84 @@
 
         <section id="labs" class="container" style="padding: 100px 0;">
             <span class="section-label">LAB PROJECTS</span>
-            <h2 class="section-title">Teknoloji Üretim Merkezi</h2>
-            
+            <h2 class="section-title"
+                data-tr="Teknoloji Üretim Merkezi"
+                data-en="Technology Production Hub">Teknoloji Üretim Merkezi</h2>
+
             <div class="bento-grid">
-                
-                <!-- Güncellenen ve Linklenen MentAI Kartı -->
+
                 <a href="clinical-ai-engine-mentai.html" class="card card-large">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
                         <span class="status-badge" style="margin-bottom: 0;">PRODUCTION READY</span>
-                        <svg class="card-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg class="card-arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <line x1="7" y1="17" x2="17" y2="7"></line>
                             <polyline points="7 7 17 7 17 17"></polyline>
                         </svg>
                     </div>
                     <h3>Project: MentAI</h3>
-                    <p>Bilişsel Davranışçı Terapi (CBT) protokollerini ve Stoacı felsefeyi temel alan, LLM katmanları üzerinde özel yönlendirme algoritmalarıyla kurgulanmış bilişsel asistan mimarisi. Kullanıcının duygu durumunu analiz ederek kişiselleştirilmiş rehberlik sunar.</p>
-                    <div style="display: flex; gap: 10px;">
-                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#AI</span>
-                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#Psychology</span>
-                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#React-Native</span>
+                    <p data-tr="Bilişsel Davranışçı Terapi (CBT) protokollerini ve Stoacı felsefeyi temel alan, LLM katmanları üzerinde özel yönlendirme algoritmalarıyla kurgulanmış bilişsel asistan mimarisi. Kullanıcının duygu durumunu analiz ederek kişiselleştirilmiş rehberlik sunar."
+                       data-en="A cognitive assistant architecture built on LLM layers with custom guidance algorithms grounded in Cognitive Behavioral Therapy (CBT) protocols and Stoic philosophy. Analyzes the user's emotional state to deliver personalized insight.">
+                        Bilişsel Davranışçı Terapi (CBT) protokollerini ve Stoacı felsefeyi temel alan, LLM katmanları üzerinde özel yönlendirme algoritmalarıyla kurgulanmış bilişsel asistan mimarisi. Kullanıcının duygu durumunu analiz ederek kişiselleştirilmiş rehberlik sunar.
+                    </p>
+                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+                        <div style="display: flex; gap: 10px;">
+                            <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#AI</span>
+                            <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#Psychology</span>
+                            <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;">#React-Native</span>
+                        </div>
+                        <a href="https://play.google.com/store/apps/details?id=com.psymentai.therapist&hl=tr"
+                           class="play-btn"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           onclick="event.stopPropagation();"
+                           aria-label="MentAI uygulamasını Google Play'de indir"
+                           data-tr="Google Play'de İndir"
+                           data-en="Get on Google Play">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M3.18 23.76c.35.19.74.24 1.12.14L15.66 12 12 8.34 3.18 23.76zm17.25-11.06-3.06-1.76-3.88 3.88 3.88 3.88 3.09-1.78c.88-.51.88-1.71-.03-2.22zM4.3.24C3.92.14 3.53.19 3.18.44L14.84 12 11.18 15.66 4.3.24zM15.66 12l3.66-3.66-12.24-7.05c-.03-.02-.05-.03-.08-.04L15.66 12z"/>
+                            </svg>
+                            Google Play'de İndir
+                        </a>
                     </div>
                 </a>
 
                 <div class="card card-small">
-                    <span class="status-badge">R&D PHASE</span>
+                    <span class="status-badge">R&amp;D PHASE</span>
                     <h3>Autonomous Agents</h3>
-                    <p>Web tabanlı karmaşık süreçleri insan müdahalesi olmadan yürüten, Python tabanlı otonom ajan ekosistemi. İş süreçlerini sezgisel karar mekanizmalarıyla yönetir.</p>
+                    <p data-tr="Web tabanlı karmaşık süreçleri insan müdahalesi olmadan yürüten, Python tabanlı otonom ajan ekosistemi. İş süreçlerini sezgisel karar mekanizmalarıyla yönetir."
+                       data-en="A Python-based autonomous agent ecosystem that executes complex web-based processes without human intervention. Manages business workflows through intuitive decision-making mechanisms.">
+                        Web tabanlı karmaşık süreçleri insan müdahalesi olmadan yürüten, Python tabanlı otonom ajan ekosistemi. İş süreçlerini sezgisel karar mekanizmalarıyla yönetir.
+                    </p>
                 </div>
 
                 <div class="card card-small">
                     <h3>Architecture First</h3>
-                    <p>Paket çözümlere sıkışmak yerine, kurumsal ihtiyaçlara %100 uyan, SOLID prensiplerine sadık .NET mimarileri tasarlıyorum.</p>
+                    <p data-tr="Paket çözümlere sıkışmak yerine, kurumsal ihtiyaçlara %100 uyan, SOLID prensiplerine sadık .NET mimarileri tasarlıyorum."
+                       data-en="Rather than settling for off-the-shelf solutions, I design .NET architectures 100% tailored to enterprise needs and faithful to SOLID principles.">
+                        Paket çözümlere sıkışmak yerine, kurumsal ihtiyaçlara %100 uyan, SOLID prensiplerine sadık .NET mimarileri tasarlıyorum.
+                    </p>
                 </div>
 
                 <div class="card card-large">
-                    <h3>Modern Backend & Cloud</h3>
-                    <p>Yüksek trafikli platformlarda edindiğim tecrübeyle; Node.js ve .NET Core mikroservis mimarilerini AWS/Docker altyapılarında optimize ederek çalıştırıyorum. "Sıfır Hata" disiplinini sistemin temeline koyuyorum.</p>
+                    <h3>Modern Backend &amp; Cloud</h3>
+                    <p data-tr="Yüksek trafikli platformlarda edindiğim tecrübeyle; Node.js ve .NET Core mikroservis mimarilerini AWS/Docker altyapılarında optimize ederek çalıştırıyorum. &quot;Sıfır Hata&quot; disiplinini sistemin temeline koyuyorum."
+                       data-en="With experience from high-traffic platforms, I optimize and run Node.js and .NET Core microservice architectures on AWS/Docker infrastructures. I place &quot;Zero Defect&quot; discipline at the foundation of every system.">
+                        Yüksek trafikli platformlarda edindiğim tecrübeyle; Node.js ve .NET Core mikroservis mimarilerini AWS/Docker altyapılarında optimize ederek çalıştırıyorum. "Sıfır Hata" disiplinini sistemin temeline koyuyorum.
+                    </p>
                 </div>
+
             </div>
         </section>
 
         <section class="statement">
             <div class="container">
                 <div class="statement-box">
-                    <h2 style="font-family: var(--font-heading); margin-bottom: 1.5rem;">Ürün Odaklı Mühendislik</h2>
-                    <p style="color: var(--text-muted); font-size: 1.1rem;">
+                    <h2 style="font-family: var(--font-heading); margin-bottom: 1.5rem;"
+                        data-tr="Ürün Odaklı Mühendislik"
+                        data-en="Product-Driven Engineering">Ürün Odaklı Mühendislik</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;"
+                       data-tr="PsyMentAI Labs, bir seri üretim fabrikası değil; karmaşık mühendislik problemlerine çözüm üreten bir <strong>İnovasyon Hub</strong>'ıdır. Kurumsal dünyadaki 8 yıllık tecrübemi, her satırda &quot;Clean Code&quot; ve sürdürülebilir mimari standartlarıyla projenize aktarıyorum."
+                       data-en="PsyMentAI Labs is not a mass-production factory; it is an <strong>Innovation Hub</strong> that solves complex engineering problems. I bring 8 years of enterprise experience to your project through &quot;Clean Code&quot; and sustainable architectural standards in every line.">
                         PsyMentAI Labs, bir seri üretim fabrikası değil; karmaşık mühendislik problemlerine çözüm üreten bir <strong>İnovasyon Hub</strong>'ıdır. Kurumsal dünyadaki 8 yıllık tecrübemi, her satırda "Clean Code" ve sürdürülebilir mimari standartlarıyla projenize aktarıyorum.
                     </p>
                 </div>
@@ -239,5 +298,22 @@
             <p>&copy; 2026 PsyMentAI Labs. Design by Ahmet Avcı.</p>
         </div>
     </footer>
+
+    <script>
+        function setLang(lang) {
+            document.documentElement.lang = lang;
+            document.getElementById('btn-tr').classList.toggle('active', lang === 'tr');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+            document.getElementById('btn-tr').setAttribute('aria-pressed', String(lang === 'tr'));
+            document.getElementById('btn-en').setAttribute('aria-pressed', String(lang === 'en'));
+            document.querySelectorAll('[data-tr][data-en]').forEach(function(el) {
+                var text = el.getAttribute('data-' + lang);
+                if (text) { el.innerHTML = text; }
+            });
+            document.title = lang === 'en'
+                ? 'PsyMentAI Labs | Advanced Software Architecture & AI Research'
+                : 'PsyMentAI Labs | İleri Seviye Yazılım Mimarisi ve AI Araştırmaları';
+        }
+    </script>
 </body>
 </html>
